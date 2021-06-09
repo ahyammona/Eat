@@ -26,7 +26,7 @@ contract Eat is BaseERC20 {
     uint256 public totalSwappedToBnb;
     uint256 public bnbToCharity;
 
-    constructor() BaseERC20("Eat", "EAT",18, 10**15 * 4){
+    constructor() BaseERC20("Eat", "Eat",18, 10**15 * 4){
         _balances[_msgSender()] = _totalSupply;
         //part to look out for
         minSwapAmount = 40000000000000 * 10**_decimals;
