@@ -55,7 +55,7 @@ contract Staking is Ownable {
     function stake(uint256 amount) public whenStakingActive {
         require(
             token.balanceOf(msg.sender) >= amount,
-            "Cannot stake more SLF than you hold unstaked."
+            "Cannot stake more Eat than you hold unstaked."
         );
         if (stakeValue[msg.sender] == 0) totalStakers += 1;
 
@@ -72,7 +72,7 @@ contract Staking is Ownable {
     function unstake(uint256 amount) external whenStakingActive {
         require(
             stakeValue[msg.sender] >= amount,
-            "Cannot unstake more SLF than you have staked."
+            "Cannot unstake more Eat than you have staked."
         );
 
         withdraw(dividendsOf(msg.sender));
