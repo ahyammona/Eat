@@ -7,7 +7,7 @@ import "./Ownable.sol";
 contract Staking is Ownable {
     uint256 internal constant DISTRIBUTION_MULTIPLIER = 2**64;
 
-    IERC20 public token;
+    BEP20 public token;
 
     mapping(address => uint256) public stakeValue;
     mapping(address => uint256) public stakerPayouts;
