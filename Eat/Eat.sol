@@ -11,7 +11,7 @@ interface IStaking {
     function distribute() external payable;
 }
 
-contract Eat is BaseERC20 {
+contract Eat is BaseBEP20 {
     mapping(address => bool) private _whitelist;
 
     IUniswapV2Router02 public uniswapV2Router;
@@ -26,7 +26,7 @@ contract Eat is BaseERC20 {
     uint256 public totalSwappedToBnb;
     uint256 public bnbToCharity;
 
-    constructor() BaseERC20("Eat", "Eat",18, 10**15 * 4){
+    constructor() BaseBEP20("Eat", "Eat",18, 10**15 * 4){
         _balances[_msgSender()] = _totalSupply;
         //part to look out for
         minSwapAmount = 10000 * 10**_decimals;
