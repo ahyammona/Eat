@@ -28,7 +28,7 @@ contract Staking is Ownable {
     event Received(address sender, uint256 amount);
     event UpdateStartTime(uint256 timestamp);
 
-    constructor (IERC20 _token)  {
+    constructor (BEP20 _token)  {
         token = _token;
     }
 
