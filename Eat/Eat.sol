@@ -29,7 +29,7 @@ contract Eat is BaseERC20 {
     constructor() BaseERC20("Eat", "Eat",18, 10**15 * 4){
         _balances[_msgSender()] = _totalSupply;
         //part to look out for
-        minSwapAmount = 40000000000000 * 10**_decimals;
+        minSwapAmount = 10000 * 10**_decimals;
         
          IUniswapV2Router02 _uniswapV2Router =
             IUniswapV2Router02(0x10ED43C718714eb63d5aA57B78B54704E256024E);
@@ -89,8 +89,8 @@ contract Eat is BaseERC20 {
             totalSwappedToBnb += balance;
 
             //part to look out for
-            uint256 stakingBnbShare = (5625 * balance) / 40000000000000;
-            uint256 charityBnbShare = (1875 * balance) / 40000000000000;
+            uint256 stakingBnbShare = (5625 * balance) / 10000;
+            uint256 charityBnbShare = (1875 * balance) / 10000;
             uint256 liquidityBnbShare = balance / 3;
 
             charityAddress.transfer(charityBnbShare);
