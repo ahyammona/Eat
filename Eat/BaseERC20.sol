@@ -4,7 +4,7 @@ pragma solidity 0.8.4;
 import "./Context.sol";
 import "./Ownable.sol";
 
-contract BaseERC20 is Context, Ownable {
+contract BaseBEP20 is Context, Ownable {
      mapping(address => uint256) internal _balances;
      mapping(address => mapping(address => uint256)) internal _allowance;
 
