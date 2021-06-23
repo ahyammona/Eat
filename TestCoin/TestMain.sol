@@ -1,35 +1,4 @@
-Skip to content
-Search or jump to…
-
-Pulls
-Issues
-Marketplace
-Explore
- 
-@ahyammona 
-ahyammona
-/
-Eat
-1
-00
-Code
-Issues
-Pull requests
-Actions
-Projects
-Wiki
-Security
-Insights
-More
-Eat/TestCoin/TestMain.sol
-@ahyammona
-ahyammona Add files via upload
-Latest commit be7c5a7 6 days ago
- History
- 1 contributor
-917 lines (733 sloc)  33.3 KB
-  
-// SPDX-License-Identifier: MIT
+ // SPDX-License-Identifier: MIT
 pragma solidity 0.8.4;
 
 interface IBEP20 {
