@@ -1,3 +1,34 @@
+Skip to content
+Search or jump to…
+
+Pulls
+Issues
+Marketplace
+Explore
+ 
+@ahyammona 
+ahyammona
+/
+Eat
+1
+00
+Code
+Issues
+Pull requests
+Actions
+Projects
+Wiki
+Security
+Insights
+More
+Eat/TestCoin/TestMain.sol
+@ahyammona
+ahyammona Add files via upload
+Latest commit be7c5a7 6 days ago
+ History
+ 1 contributor
+917 lines (733 sloc)  33.3 KB
+  
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.4;
 
@@ -456,7 +487,11 @@ contract TestCoin is Context, IBEP20, Ownable {
 
     uint256 public _liquidityFee = 2;
     uint256 private _previousLiquidityFee = _liquidityFee;
+    
+    uint256 public _totalFees = _devFee + _charityFee + _liquidityFee;
 
+    uint256 _burn = 1;
+    
     IPanswapV2Router02 public immutable panswapV2Router;
     address public immutable panswapV2Pair;
     
@@ -860,19 +895,22 @@ contract TestCoin is Context, IBEP20, Ownable {
     }
 
     function _tokenTransfer(address sender, address recipient, uint256 amount,bool takeFee) private {
+        
+        uint256 burnAmount = _burn.mul(amount).div(100);
+        
         if(!takeFee)
             removeAllFee();
         
         if (_isExcluded[sender] && !_isExcluded[recipient]) {
-            _transferFromExcluded(sender, recipient, amount);
+            _transferFromExcluded(sender, recipient, amount).sub(burnAmount);
         } else if (!_isExcluded[sender] && _isExcluded[recipient]) {
-            _transferToExcluded(sender, recipient, amount);
+            _transferToExcluded(sender, recipient, amount).sub(burnAmount);
         } else if (!_isExcluded[sender] && !_isExcluded[recipient]) {
-            _transferStandard(sender, recipient, amount);
+            _transferStandard(sender, recipient, amount).sub(burnAmount);
         } else if (_isExcluded[sender] && _isExcluded[recipient]) {
-            _transferBothExcluded(sender, recipient, amount);
+            _transferBothExcluded(sender, recipient, amount).sub(burnAmount);
         } else {
-            _transferStandard(sender, recipient, amount);
+            _transferStandard(sender, recipient, amount).sub(burnAmount);
         }
         
         if(!takeFee)
