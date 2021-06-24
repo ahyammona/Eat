@@ -1,4 +1,4 @@
- // SPDX-License-Identifier: MIT
+// SPDX-License-Identifier: MIT
 pragma solidity 0.8.4;
 
 interface IBEP20 {
@@ -871,15 +871,15 @@ contract TestCoin is Context, IBEP20, Ownable {
             removeAllFee();
         
         if (_isExcluded[sender] && !_isExcluded[recipient]) {
-            _transferFromExcluded(sender, recipient, amount).sub(burnAmount);
+            _transferFromExcluded(sender, recipient, amount.sub(burnAmount));
         } else if (!_isExcluded[sender] && _isExcluded[recipient]) {
-            _transferToExcluded(sender, recipient, amount).sub(burnAmount);
+            _transferToExcluded(sender, recipient, amount.sub(burnAmount));
         } else if (!_isExcluded[sender] && !_isExcluded[recipient]) {
-            _transferStandard(sender, recipient, amount).sub(burnAmount);
+            _transferStandard(sender, recipient, amount.sub(burnAmount));
         } else if (_isExcluded[sender] && _isExcluded[recipient]) {
-            _transferBothExcluded(sender, recipient, amount).sub(burnAmount);
+            _transferBothExcluded(sender, recipient, amount.sub(burnAmount));
         } else {
-            _transferStandard(sender, recipient, amount).sub(burnAmount);
+            _transferStandard(sender, recipient, amount.sub(burnAmount));
         }
         
         if(!takeFee)
@@ -922,3 +922,4 @@ contract TestCoin is Context, IBEP20, Ownable {
     }   
 
 }
+
